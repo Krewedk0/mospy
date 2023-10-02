@@ -178,7 +178,12 @@ class Transaction:
         signer_infos.sequence = self._account.next_sequence
         signer_infos.public_key.Pack(self._account.public_key)
         if self._account.eth:
-            signer_infos.public_key.type_url = "/ethermint.crypto.v1.ethsecp256k1.PubKey"
+            if self._account.eth == "evmos":
+                signer_infos.public_key.type_url = "/ethermint.crypto.v1.ethsecp256k1.PubKey"
+            elif self._account.eth == "injective":
+                signer_infos.public_key.type_url = "/injective.crypto.v1beta1.ethsecp256k1.PubKey"
+            else:
+                raise ValueError("Invalid account eth type, should be one of: evmos, injective")
         else:
             signer_infos.public_key.type_url = "/cosmos.crypto.secp256k1.PubKey"
         signer_infos.mode_info.single.mode = 1

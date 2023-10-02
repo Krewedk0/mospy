@@ -27,7 +27,7 @@ class Account:
         hrp (str): Address Prefix
         address_index (int): Address index to get sub accounts for seed phrases (doesn't work when using a private key)
         protobuf (str): Define which protobuf files to use. Cosmos, Evmos and Osmosis are built in and otherwise pass the raw package name (cosmospy-protobuf)
-        eth (bool): Etermint compatibility mpde. If set to true the addresses and signatures will match the ethereum standard. Defaults to false to match the Cosmos standard.
+        eth (str): Etermint compatibility mode. If set to ``evmos`` or ``injective`` the addresses and signatures will match the ethereum standard. Chain name needed for correct public key type in signature info. Defaults to None to match the Cosmos standard.
     """
 
     address: str
@@ -45,7 +45,7 @@ class Account:
         hrp: str = "cosmos",
         address_index: int = 0,
         protobuf: str = "cosmos",
-        eth: bool = False
+        eth: str = None
     ):
         _protobuf_packages = {
             "cosmos": "cosmospy_protobuf",
@@ -281,12 +281,12 @@ class Account:
         self._slip44 = slip44
 
     @property
-    def eth(self) -> bool:
+    def eth(self) -> str:
         """
-        Change the eth compatibility mode. If you want to use Evmos you will need to set eth to true. Otherwise it defaults to False
+        Change the eth compatibility mode. If you want to use Evmos you will need to set eth to ``evmos`` or ``injective`` for Injective chain. Otherwise it defaults to None
 
         Args:
-            eth (bool): ETH compatibility mode
+            eth (str): ETH compatibility mode
 
         Returns:
             eth
@@ -294,6 +294,6 @@ class Account:
         return self._eth
 
     @eth.setter
-    def eth(self, eth: bool):
+    def eth(self, eth: str):
 
         self._eth = eth

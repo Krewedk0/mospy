@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mospy-wallet"
+name = "mospy-ethermint"
 version = "0.4.1"
 description = "This package is a fork of cosmospy and is a light framework for the cosmos ecosystem"
 authors = [

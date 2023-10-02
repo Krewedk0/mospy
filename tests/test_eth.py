@@ -9,7 +9,7 @@ class TestEthClass:
             seed_phrase="law grab theory better athlete submit awkward hawk state wedding wave monkey audit blame fury wood tag rent furnace exotic jeans drift destroy style",
             hrp="evmos",
             slip44=60,
-            eth=True,
+            eth="evmos",
             next_sequence=1,
             account_number=2154050,
         )
